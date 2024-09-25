@@ -1,12 +1,19 @@
 {
-  "name": "Docs for ACE",
-  "version": "1.0.0",
+  "name": "ace-docs",
+  "version": "0.0.1",
+  "description": "Documentation website for ACE",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IAmRiteshKoushik/ace-docs.git"
+  },
   "author": "Ritesh Koushik <riteshkoushik39@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/IAmRiteshKoushik/ace-docs#readme",
   "dependencies": {
     "next": "^13.0.6",
     "nextra": "latest",
