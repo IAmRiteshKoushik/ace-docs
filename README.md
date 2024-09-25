@@ -1,4 +1,4 @@
-# Eventr API Documentation
+# ACE API Documentation
 
 ## Setup
 1. Clone the repository
