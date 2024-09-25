@@ -3,7 +3,7 @@
 ## Setup
 1. Clone the repository
 ```git
-git clone https://github.com/TeamEventr/docs
+git clone https://github.com/IAmRiteshKoushik/ace-docs
 ```
 2. Run any one of the following commands
 ```bash

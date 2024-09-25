@@ -1,0 +1,66 @@
+## Login Request
+
+```ts filename="login.ts" copy {2}
+import z from "zod";
+
+const LoginValidator = z.object({
+  email: z.string().email(),
+  password: z.string().min(8)   // Add regex checks as well
+});
+
+const login = async() => {
+  // Validation logic
+  const validBody = LoginValidator.safeParse(requestBody)
+  if(!validBody){
+    return;
+  }
+
+  // Request logic
+  const url = "http://example.org/"
+  const request = await fetch(url, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify(validBody),
+  });
+
+  if(request.status === 200){
+    const response = await request.json();
+    // Extract response only if StatusOK
+
+  } else if (request.status === 400){
+    // Bad Request. Fields missing
+
+  } else if (request.status === 403){
+    // Forbidden Request. Action not authorized.
+
+  } else if (request.status === 500){
+    // Internal Server Error. Contact the admin.
+
+  } else if (request.status === 404){
+    // Resource Not Found
+
+  } else {
+    // Handle
+  }
+}
+```
+
+> The password must be hashed before being sent to the backend. A naked password
+must not be sent over the network. Use an NPM package like `crypto` and use 
+SHA-256 to implement the hashing. Once put into production this cannot be changed.
+
+## Login Response
+```json filename="response.json" copy 
+// HTTP Status: 200
+{
+  "email": "user@example.com",
+  "token": "v2.local.vB7daJlQOL5sY8mQa_FWb6ZYbkNi8yeRqI-DCFNEPTYEu7ItQHMMM5jzD_fw-G7l-AXJRBj3E9jxx9-JS5eG436WGUn03zYp2nuV3PVqppEyRP9LoZ1TTBREhR182NRcNYqUkM8FfazWegWcLc1gSzFXx0Kge4U7XHtAlliTrR8p09hH6qVpqAsgMdp00ao66JX_mxlEjkL3y784CoAK-gyy_ZZ1WzAvYAjQApl859RxnB9uLMpb-VURmetmrw9sC_Iw27to46ulTcMxx_KoSBem9eSG5M4bvNQC5YFeDLIM2HXDf35YIo50.eyJraWQiOiAiMTIzNDUifQ",
+}
+```
+
+## Logout
+> When logging out clear out the browser cache, cookies, local storages and 
+state management stores. Delete any `ACCESS_TOKENS` or `PRESIGNED_URLs` as it 
+can be a site for vulnerability.
